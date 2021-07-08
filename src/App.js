@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Provider } from 'react-redux'
+import { PersistGate } from 'redux-persist/lib/integration/react'
+import { createTheme, ThemeProvider } from '@material-ui/core/styles'
+import { Switch, Route, BrowserRouter } from 'react-router-dom'
+
+import Theme from './Theme'
+import Layout from './Layouts'
+import { store, persistor } from './Store'
+import HomePage from './App/Pages/index'
+import NotFoundPage from './App/Pages/NotFoundPage/index'
+const theme = createTheme(Theme('light'))
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <ThemeProvider theme={theme}>
+            <Layout>
+              <Switch>
+                <Route
+                  exact
+                  path={process.env.PUBLIC_URL + '/'}
+                  component={HomePage}
+                />
+                <Route component={NotFoundPage} />
+              </Switch>
+            </Layout>
+          </ThemeProvider>
+        </PersistGate>
+      </Provider>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App
