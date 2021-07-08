@@ -12,6 +12,9 @@ const theme = createTheme({
     secondary: {
       main: '#f6f5f0',
     },
+    grey: {
+      wavemind: '#353535',
+    },
   },
 })
 export default theme

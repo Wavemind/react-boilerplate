@@ -7,7 +7,7 @@ import { Favorite } from '@material-ui/icons'
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <Typography variant="body2" align="center">
       Coded with
       <Favorite color="error" />
       by{' '}

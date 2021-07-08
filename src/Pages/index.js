@@ -1,7 +1,6 @@
 /**
  * The external imports
  */
-
 import * as React from 'react'
 import {
   CssBaseline,
