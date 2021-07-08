@@ -1,7 +1,7 @@
 /**
  * The external imports
  */
-import React from 'react'
+import * as React from 'react'
 import {
   CssBaseline,
   Toolbar,
@@ -19,7 +19,7 @@ import {
 /**
  * The internal imports
  */
-import useStyles from '../../Theme/Pages/index'
+import useStyles from '../Theme/Pages/index'
 
 const featuredPosts = [
   {

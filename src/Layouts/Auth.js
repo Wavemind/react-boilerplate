@@ -11,7 +11,7 @@ import Container from '@material-ui/core/Container'
  * The internal imports
  */
 import useStyles from '../Theme/Layouts/Admin'
-import { Copyright } from '../App/Components'
+import { Copyright } from '../Components'
 
 const SignIn = ({ children }) => {
   const classes = useStyles()

@@ -6,8 +6,8 @@ import * as React from 'react'
 /**
  * The internal imports
  */
-import { Link } from '../../../App/Components/index'
-import useStyles from '../../../Theme/Pages/NotFoundPage/index.style'
+import { Link } from '../../Components/index'
+import useStyles from '../../Theme/Pages/NotFoundPage/index.style'
 
 export default function NotFoundPage() {
   const classes = useStyles()

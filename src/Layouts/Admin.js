@@ -23,9 +23,9 @@ import { Notifications, ChevronLeft, Menu } from '@material-ui/icons'
 /**
  * The internal imports
  */
-import { mainListItems, secondaryListItems } from './routes'
+import { mainListItems, secondaryListItems } from './Sidebar'
 import useStyles from '../Theme/Layouts/Admin'
-import { Copyright } from '../App/Components'
+import { Copyright } from '../Components'
 
 const Admin = ({ children }) => {
   const classes = useStyles()

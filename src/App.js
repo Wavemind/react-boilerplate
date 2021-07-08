@@ -1,14 +1,21 @@
+/**
+ * The external imports
+ */
 import React from 'react'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/lib/integration/react'
 import { createTheme, ThemeProvider } from '@material-ui/core/styles'
 import { Switch, Route, BrowserRouter } from 'react-router-dom'
 
+/**
+ * The internal imports
+ */
 import Theme from './Theme'
 import Layout from './Layouts'
 import { store, persistor } from './Store'
-import HomePage from './App/Pages/index'
-import NotFoundPage from './App/Pages/NotFoundPage/index'
+import HomePage from './Pages/index'
+import NotFoundPage from './Pages/NotFoundPage/index'
+
 const theme = createTheme(Theme('light'))
 
 function App() {
