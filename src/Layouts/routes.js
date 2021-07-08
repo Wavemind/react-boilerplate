@@ -1,3 +1,6 @@
+/**
+ * The external imports
+ */
 import React from 'react'
 import {
   ListItem,
@@ -5,7 +8,6 @@ import {
   ListItemText,
   ListSubheader,
 } from '@material-ui/core'
-
 import {
   Dashboard,
   People,

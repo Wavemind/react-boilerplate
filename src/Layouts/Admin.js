@@ -1,3 +1,6 @@
+/**
+ * The external imports
+ */
 import React from 'react'
 import { withRouter } from 'next/router'
 import clsx from 'clsx'
@@ -15,8 +18,11 @@ import {
   Container,
   Grid,
 } from '@material-ui/core'
-
 import { Notifications, ChevronLeft, Menu } from '@material-ui/icons'
+
+/**
+ * The internal imports
+ */
 import { mainListItems, secondaryListItems } from './routes'
 import useStyles from '../Theme/Layouts/Admin'
 import { Copyright } from '../App/Components'

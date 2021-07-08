@@ -1,3 +1,6 @@
+/**
+ * The external imports
+ */
 import React from 'react'
 import { Typography, Link } from '@material-ui/core'
 import { Favorite } from '@material-ui/icons'

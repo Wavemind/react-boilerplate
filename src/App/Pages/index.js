@@ -1,3 +1,6 @@
+/**
+ * The external imports
+ */
 import React from 'react'
 import {
   CssBaseline,
@@ -12,6 +15,10 @@ import {
   Hidden,
   Container,
 } from '@material-ui/core'
+
+/**
+ * The internal imports
+ */
 import useStyles from '../../Theme/Pages/index'
 
 const featuredPosts = [
