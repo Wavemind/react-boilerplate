@@ -17,13 +17,17 @@ const SignIn = ({ children }) => {
   const classes = useStyles()
 
   return (
-    <Container component="main" maxWidth="xs">
+    <div className={classes.root}>
       <CssBaseline />
-      <div className={classes.paper}>{children}</div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
-    </Container>
+      <main className={classes.content}>
+        <div className={classes.auth}>{children}</div>
+      </main>
+      <footer className={classes.footer}>
+        <Container maxWidth="sm">
+          <Copyright />
+        </Container>
+      </footer>
+    </div>
   )
 }
 

@@ -5,7 +5,7 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/lib/integration/react'
 import { createTheme, ThemeProvider } from '@material-ui/core/styles'
-import { Switch, Route, BrowserRouter } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 
 /**
  * The internal imports
@@ -13,8 +13,7 @@ import { Switch, Route, BrowserRouter } from 'react-router-dom'
 import Theme from './Theme'
 import Layout from './Layouts'
 import { store, persistor } from './Store'
-import HomePage from './Pages/index'
-import NotFoundPage from './Pages/NotFoundPage/index'
+import Navigation from './Config/Navigation'
 
 const theme = createTheme(Theme('light'))
 
@@ -25,14 +24,7 @@ function App() {
         <PersistGate loading={null} persistor={persistor}>
           <ThemeProvider theme={theme}>
             <Layout>
-              <Switch>
-                <Route
-                  exact
-                  path={process.env.PUBLIC_URL + '/'}
-                  component={HomePage}
-                />
-                <Route component={NotFoundPage} />
-              </Switch>
+              <Navigation />
             </Layout>
           </ThemeProvider>
         </PersistGate>

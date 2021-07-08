@@ -75,6 +75,7 @@ const useStyles = makeStyles(theme => {
     content: {
       flexGrow: 1,
       overflow: 'auto',
+      display: 'flex',
     },
     container: {
       paddingTop: theme.spacing(4),
@@ -85,6 +86,12 @@ const useStyles = makeStyles(theme => {
       display: 'flex',
       overflow: 'auto',
       flexDirection: 'column',
+    },
+    auth: {
+      flex: 1,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
     },
     fixedHeight: {
       height: 240,
