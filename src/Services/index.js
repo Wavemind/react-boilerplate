@@ -1,4 +1,11 @@
+/**
+ * The external imports
+ */
 import axios from 'axios'
+
+/**
+ * The internal imports
+ */
 import { Config } from '../Config'
 
 const instance = axios.create({

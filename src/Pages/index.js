@@ -1,4 +1,8 @@
-import React from 'react'
+/**
+ * The external imports
+ */
+
+import * as React from 'react'
 import {
   CssBaseline,
   Toolbar,
@@ -12,7 +16,11 @@ import {
   Hidden,
   Container,
 } from '@material-ui/core'
-import useStyles from '../../Theme/Pages/index'
+
+/**
+ * The internal imports
+ */
+import useStyles from '../Theme/Pages/index'
 
 const featuredPosts = [
   {

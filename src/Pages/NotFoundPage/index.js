@@ -1,6 +1,13 @@
+/**
+ * The external imports
+ */
 import * as React from 'react'
 
-import { Link } from '../../../App/Components/index'
+/**
+ * The internal imports
+ */
+import { Link } from '../../Components'
+
 export default function NotFoundPage() {
   return (
     <>

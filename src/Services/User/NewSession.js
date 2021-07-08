@@ -1,3 +1,6 @@
+/**
+ * The internal imports
+ */
 import api from '../index'
 
 export default async ({ email, password }) => {

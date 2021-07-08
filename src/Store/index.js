@@ -1,3 +1,6 @@
+/**
+ * The external imports
+ */
 import storage from 'redux-persist/lib/storage'
 import { combineReducers } from 'redux'
 import { configureStore } from '@reduxjs/toolkit'
@@ -12,6 +15,9 @@ import {
   REGISTER,
 } from 'redux-persist'
 
+/**
+ * The internal imports
+ */
 import theme from './Theme'
 import user from './User'
 
