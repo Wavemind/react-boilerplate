@@ -28,7 +28,7 @@ export const handleError = ({ message, data, status }) =>
 
 instance.interceptors.request.use(
   async config => {
-    config.baseURL = Config.URL_STAGING_API
+    config.baseURL = Config.URL_DEV_API
     return config
   },
   error => {
