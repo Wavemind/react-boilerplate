@@ -11,9 +11,8 @@ import { BrowserRouter } from 'react-router-dom'
  * The internal imports
  */
 import Theme from './Theme'
-import Layout from './Layouts'
 import { store, persistor } from './Store'
-import Navigation from './Config/Navigation'
+import Navigation from './Navigation'
 
 const theme = createTheme(Theme('light'))
 
@@ -23,9 +22,7 @@ function App() {
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <ThemeProvider theme={theme}>
-            <Layout>
-              <Navigation />
-            </Layout>
+            <Navigation />
           </ThemeProvider>
         </PersistGate>
       </Provider>

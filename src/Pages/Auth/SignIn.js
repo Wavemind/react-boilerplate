@@ -11,6 +11,7 @@ import { useForm, Controller } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { isFulfilled } from '@reduxjs/toolkit'
 import Box from '@material-ui/core/Box'
+import { useHistory, useLocation } from 'react-router-dom'
 
 /**
  * The internal imports
@@ -22,6 +23,8 @@ export default function SignIn() {
   const classes = useStyles()
   const { control, handleSubmit } = useForm()
   const dispatch = useDispatch()
+  const history = useHistory()
+  const location = useLocation()
 
   // Get values from the store
   const newSessionError = useSelector(state => state.user.newSession.error)
@@ -33,7 +36,8 @@ export default function SignIn() {
     )
 
     if (isFulfilled(newSessionUser)) {
-      console.log("j'ai réussi")
+      let { from } = location.state || { from: { pathname: '/' } }
+      history.replace(from)
     }
   }
 

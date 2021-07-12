@@ -4,7 +4,7 @@ import reportWebVitals from './reportWebVitals'
 import App from './App'
 
 // Initialize languages
-import './Locales/i18n'
+import './Translations'
 
 ReactDOM.render(
   <React.StrictMode>
