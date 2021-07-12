@@ -6,7 +6,6 @@ import { makeStyles } from '@material-ui/core/styles'
 const drawerWidth = 350
 
 const useStyles = makeStyles(theme => {
-  console.log(theme.palette)
   return {
     root: {
       display: 'flex',
@@ -99,8 +98,6 @@ const useStyles = makeStyles(theme => {
     footer: {
       padding: theme.spacing(3, 2),
       marginTop: 'auto',
-      backgroundColor: theme.palette.grey.wavemind,
-      color: theme.palette.grey[50],
     },
   }
 })
