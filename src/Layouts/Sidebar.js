@@ -1,12 +1,10 @@
 /**
  * The external imports
  */
-/**
- * The external imports
- */
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import {
   ListItem,
   ListItemIcon,
@@ -33,6 +31,7 @@ import DestroySessionUser from '../Store/User/DestroySession'
 const Sidebar = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const history = useHistory()
 
   const logout = () => {
     dispatch(DestroySessionUser.action({}))
@@ -42,7 +41,7 @@ const Sidebar = () => {
     <div>
       <Divider />
       <List>
-        <ListItem button>
+        <ListItem button onClick={() => history.push('/')}>
           <ListItemIcon>
             <Dashboard />
           </ListItemIcon>
