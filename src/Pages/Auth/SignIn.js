@@ -2,15 +2,13 @@
  * The external imports
  */
 import React from 'react'
-import Button from '@material-ui/core/Button'
-import TextField from '@material-ui/core/TextField'
-import Link from '@material-ui/core/Link'
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
+
+import { Button, TextField, Typography, Box } from '@material-ui/core'
 import { useForm, Controller } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { isFulfilled } from '@reduxjs/toolkit'
-import Box from '@material-ui/core/Box'
+import { useHistory, useLocation } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 /**
  * The internal imports
@@ -22,9 +20,13 @@ export default function SignIn() {
   const classes = useStyles()
   const { control, handleSubmit } = useForm()
   const dispatch = useDispatch()
+  const { t } = useTranslation()
+  const history = useHistory()
+  const location = useLocation()
 
   // Get values from the store
   const newSessionError = useSelector(state => state.user.newSession.error)
+  const newSessionLoading = useSelector(state => state.user.newSession.loading)
 
   const onSubmit = async data => {
     // Dispatches the user information to open a new session
@@ -33,20 +35,27 @@ export default function SignIn() {
     )
 
     if (isFulfilled(newSessionUser)) {
-      console.log("j'ai réussi")
+      let { from } = location.state || { from: { pathname: '/' } }
+      history.replace(from)
     }
   }
 
   return (
     <div>
+      <img
+        className={classes.logo}
+        src={process.env.PUBLIC_URL + '/logo/logo-black-sentence.svg'}
+      />
       <Typography component="h1" variant="h5">
-        Sign in
+        {t('pages.auth.sign_in.title')}
       </Typography>
       <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
         <Controller
           name="email"
           control={control}
-          defaultValue=""
+          defaultValue={
+            process.env.NODE_ENV === 'development' && 'dev@wavemind.ch'
+          }
           render={({ field }) => (
             <TextField
               variant="outlined"
@@ -54,7 +63,7 @@ export default function SignIn() {
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label={t('pages.auth.sign_in.email')}
               name="email"
               autoComplete="email"
               autoFocus
@@ -66,7 +75,7 @@ export default function SignIn() {
         <Controller
           name="password"
           control={control}
-          defaultValue=""
+          defaultValue={process.env.NODE_ENV === 'development' && '123456'}
           render={({ field }) => (
             <TextField
               variant="outlined"
@@ -74,7 +83,7 @@ export default function SignIn() {
               required
               fullWidth
               name="password"
-              label="Password"
+              label={t('pages.auth.sign_in.password')}
               type="password"
               id="password"
               autoComplete="current-password"
@@ -100,17 +109,11 @@ export default function SignIn() {
           fullWidth
           variant="contained"
           color="primary"
+          disabled={newSessionLoading}
           className={classes.submit}
         >
-          Sign In
+          {t('pages.auth.sign_in.login')}
         </Button>
-        <Grid container>
-          <Grid item xs>
-            <Link href="#" variant="body2">
-              Forgot password?
-            </Link>
-          </Grid>
-        </Grid>
       </form>
     </div>
   )
