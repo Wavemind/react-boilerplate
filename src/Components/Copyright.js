@@ -11,7 +11,7 @@ function Copyright() {
       Coded with
       <Favorite color="error" />
       by{' '}
-      <Link color="inherit" href="https://material-ui.com/">
+      <Link color="inherit" href="https://wavemind.ch/">
         Wavemind Sàrl
       </Link>
       {' - '}

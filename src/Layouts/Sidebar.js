@@ -6,7 +6,7 @@
  */
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import {
   ListItem,
   ListItemIcon,
@@ -75,12 +75,12 @@ const Sidebar = () => {
       </List>
       <Divider />
       <List>
-        <ListSubheader inset>{t('sideBar.title')}</ListSubheader>
+        <ListSubheader inset>{t('side_bar.title')}</ListSubheader>
         <ListItem button onClick={logout}>
           <ListItemIcon>
             <ExitToApp />
           </ListItemIcon>
-          <ListItemText primary={t('sideBar.logout')} />
+          <ListItemText primary={t('side_bar.logout')} />
         </ListItem>
       </List>
     </div>

@@ -17,7 +17,7 @@ export const withAdminLayout = Component => props => {
   return currentUser.id ? (
     <Admin>
       {/* All props are passed through to the Component being wrapped */}
-      <Component {...props} /> /
+      <Component {...props} />
     </Admin>
   ) : (
     <Redirect
@@ -33,6 +33,6 @@ export const withAuthLayout = Component => props =>
   (
     <Auth>
       {/* All props are passed through to the Component being wrapped */}
-      <Component {...props} /> /
+      <Component {...props} />
     </Auth>
   )
