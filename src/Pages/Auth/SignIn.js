@@ -2,7 +2,7 @@
  * The external imports
  */
 import React, { useEffect } from 'react'
-import { Button, TextField, Typography, Grid } from '@material-ui/core'
+import { Button, Typography, Box, Grid } from '@material-ui/core'
 import { useForm, Controller } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { isFulfilled } from '@reduxjs/toolkit'
@@ -15,7 +15,7 @@ import { useSnackbar } from 'notistack'
  */
 import NewSessionAuth from '../../Store/Auth/NewSession'
 import useStyles from '../../Theme/Pages/Auth/SignIn'
-import { Link } from '../../Components'
+import { Link, AuthTextInput } from '../../Components'
 
 const SignIn = () => {
   const { enqueueSnackbar } = useSnackbar()
@@ -50,7 +50,7 @@ const SignIn = () => {
   return (
     <div>
       <Typography component="h1" variant="h5" align="center">
-        {t('pages.auth.sign_in.title')}
+        <Box mb={4}>{t('pages.auth.sign_in.title')}</Box>
       </Typography>
       <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
         <Controller
@@ -60,13 +60,13 @@ const SignIn = () => {
             process.env.NODE_ENV === 'development' && 'dev@wavemind.ch'
           }
           render={({ field }) => (
-            <TextField
+            <AuthTextInput
               variant="filled"
               margin="normal"
               required
               fullWidth
               id="email"
-              label={t('user.email')}
+              placeholder={t('user.email')}
               name="email"
               autoComplete="email"
               autoFocus
@@ -80,13 +80,13 @@ const SignIn = () => {
           control={control}
           defaultValue={process.env.NODE_ENV === 'development' && '123456'}
           render={({ field }) => (
-            <TextField
+            <AuthTextInput
               variant="filled"
               margin="normal"
               required
               fullWidth
               name="password"
-              label={t('user.password')}
+              placeholder={t('user.password')}
               type="password"
               id="password"
               autoComplete="current-password"
