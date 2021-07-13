@@ -16,9 +16,15 @@ const SignIn = ({ children }) => {
   const classes = useStyles()
 
   return (
-    <div className={classes.root}>
+    <div className={classes.rootLogin}>
       <CssBaseline />
-      <main className={classes.content}>
+      <div className={classes.headerLogin}>
+        <img
+          className={classes.logo}
+          src={process.env.PUBLIC_URL + '/logo/logo-black-sentence.svg'}
+        />
+      </div>
+      <main className={classes.contentAuth}>
         <div className={classes.auth}>{children}</div>
       </main>
       <footer className={classes.footer}>
