@@ -8,17 +8,21 @@ import { createTheme, ThemeProvider } from '@material-ui/core/styles'
 import { BrowserRouter } from 'react-router-dom'
 import { SnackbarProvider } from 'notistack'
 import Slide from '@material-ui/core/Slide'
-
 /**
  * The internal imports
  */
 import Theme from './Theme'
 import { store, persistor } from './Store'
 import Navigation from './Navigation'
+import useStyles from './Theme/Components/Snackbar'
 
 const theme = createTheme(Theme('light'))
 
 function App() {
+  const classes = useStyles()
+
+  console.log(classes)
+
   return (
     <BrowserRouter>
       <Provider store={store}>
@@ -28,9 +32,11 @@ function App() {
               vertical: 'top',
               horizontal: 'right',
             }}
+            classes={{
+              root: classes.snackContainer,
+            }}
             TransitionComponent={Slide}
             maxSnack={3}
-            dense={false}
           >
             <ThemeProvider theme={theme}>
               <Navigation />

@@ -3,7 +3,7 @@
  */
 import React, { useEffect } from 'react'
 
-import { Button, TextField, Typography, Box } from '@material-ui/core'
+import { Button, Typography, Box } from '@material-ui/core'
 import { useForm, Controller } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { isFulfilled } from '@reduxjs/toolkit'
@@ -16,7 +16,7 @@ import { useSnackbar } from 'notistack'
  */
 import NewSessionUser from '../../Store/User/NewSession'
 import useStyles from '../../Theme/Pages/Auth/SignIn'
-import { Link } from '../../Components'
+import { Link, AuthTextInput } from '../../Components'
 
 export default function SignIn() {
   const { enqueueSnackbar } = useSnackbar()
@@ -52,7 +52,7 @@ export default function SignIn() {
   return (
     <div>
       <Typography component="h1" variant="h5" align="center">
-        {t('pages.auth.sign_in.title')}
+        <Box mb={4}>{t('pages.auth.sign_in.title')}</Box>
       </Typography>
       <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
         <Controller
@@ -62,13 +62,13 @@ export default function SignIn() {
             process.env.NODE_ENV === 'development' && 'dev@wavemind.ch'
           }
           render={({ field }) => (
-            <TextField
+            <AuthTextInput
               variant="filled"
               margin="normal"
               required
               fullWidth
               id="email"
-              label={t('pages.auth.sign_in.email')}
+              placeholder={t('pages.auth.sign_in.email')}
               name="email"
               autoComplete="email"
               autoFocus
@@ -82,13 +82,13 @@ export default function SignIn() {
           control={control}
           defaultValue={process.env.NODE_ENV === 'development' && '123456'}
           render={({ field }) => (
-            <TextField
+            <AuthTextInput
               variant="filled"
               margin="normal"
               required
               fullWidth
               name="password"
-              label={t('pages.auth.sign_in.password')}
+              placeholder={t('pages.auth.sign_in.password')}
               type="password"
               id="password"
               autoComplete="current-password"

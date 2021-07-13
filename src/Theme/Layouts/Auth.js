@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => {
       minHeight: '100vh',
     },
     headerLogin: {
-      backgroundColor: theme.palette.light,
+      backgroundColor: theme.palette.primary.main,
       height: '40vh',
       width: '100%',
       position: 'absolute',
@@ -45,7 +45,7 @@ const useStyles = makeStyles(theme => {
       justifyContent: 'center',
       alignItems: 'center',
       zIndex: 10,
-      backgroundColor: theme.palette.white,
+      backgroundColor: theme.palette.light,
       padding: theme.spacing(4),
     },
     logo: {
