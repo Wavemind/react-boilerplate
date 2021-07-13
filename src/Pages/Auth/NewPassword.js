@@ -3,7 +3,7 @@
  */
 import React, { useEffect } from 'react'
 
-import { Button, TextField, Typography, Box, Grid } from '@material-ui/core'
+import { Button, Typography, Box, Grid } from '@material-ui/core'
 import { useForm, Controller } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
@@ -17,7 +17,7 @@ import { useSnackbar } from 'notistack'
 import NewPasswordAuth from '../../Store/Auth/NewPassword'
 import ClearAuth from '../../Store/Auth/Clear'
 import useStyles from '../../Theme/Pages/Auth/SignIn'
-import { Link } from '../../Components'
+import { Link, AuthTextInput } from '../../Components'
 
 const NewPassword = () => {
   const { enqueueSnackbar } = useSnackbar()
@@ -75,7 +75,7 @@ const NewPassword = () => {
   return (
     <div>
       <Typography component="h1" variant="h5" align="center">
-        {t('pages.auth.new_password.title')}
+      <Box mb={4}>{t('pages.auth.new_password.title')}</Box>
       </Typography>
       <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
         <Controller
@@ -83,13 +83,13 @@ const NewPassword = () => {
           control={control}
           defaultValue={process.env.NODE_ENV === 'development' && '123456'}
           render={({ field }) => (
-            <TextField
+            <AuthTextInput
               variant="filled"
               margin="normal"
               required
               fullWidth
               name="password"
-              label={t('user.password')}
+              placeholder={t('user.password')}
               type="password"
               id="password"
               autoComplete="current-password"
@@ -103,13 +103,13 @@ const NewPassword = () => {
           control={control}
           defaultValue={process.env.NODE_ENV === 'development' && '123456'}
           render={({ field }) => (
-            <TextField
+            <AuthTextInput
               variant="filled"
               margin="normal"
               required
               fullWidth
               name="passwordConfirmation"
-              label={t('user.password_confirmation')}
+              placeholder={t('user.password_confirmation')}
               type="password"
               id="passwordConfirmation"
               {...field}

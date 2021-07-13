@@ -17,6 +17,6 @@ export default async ({
     password,
     password_confirmation: passwordConfirmation,
   })
-  console.log(response)
+  
   return response.data
 }

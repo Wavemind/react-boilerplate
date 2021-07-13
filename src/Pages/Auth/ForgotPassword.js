@@ -3,7 +3,7 @@
  */
 import React, { useEffect } from 'react'
 
-import { Button, TextField, Typography, Grid, Box } from '@material-ui/core'
+import { Button, Typography, Grid, Box } from '@material-ui/core'
 import { useForm, Controller } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
@@ -17,7 +17,7 @@ import { useSnackbar } from 'notistack'
 import ForgotPasswordAuth from '../../Store/Auth/ForgotPassword'
 import ClearAuth from '../../Store/Auth/Clear'
 import useStyles from '../../Theme/Pages/Auth/SignIn'
-import { Link } from '../../Components'
+import { Link, AuthTextInput } from '../../Components'
 
 const ForgotPassword = () => {
   const { enqueueSnackbar } = useSnackbar()
@@ -63,7 +63,7 @@ const ForgotPassword = () => {
   return (
     <div>
       <Typography component="h1" variant="h5" align="center">
-        {t('pages.auth.forgot_password.title')}
+      <Box mb={4}>{t('pages.auth.forgot_password.title')}</Box>
       </Typography>
       <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
         <Controller
@@ -73,13 +73,13 @@ const ForgotPassword = () => {
             process.env.NODE_ENV === 'development' && 'dev@wavemind.ch'
           }
           render={({ field }) => (
-            <TextField
+            <AuthTextInput
               variant="filled"
               margin="normal"
               required
               fullWidth
               id="email"
-              label={t('user.email')}
+              placeholder={t('user.email')}
               name="email"
               autoComplete="email"
               autoFocus
