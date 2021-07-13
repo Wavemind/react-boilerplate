@@ -15,6 +15,7 @@ import { useSnackbar } from 'notistack'
  * The internal imports
  */
 import ForgotPasswordAuth from '../../Store/Auth/ForgotPassword'
+import ClearAuth from '../../Store/Auth/Clear'
 import useStyles from '../../Theme/Pages/Auth/SignIn'
 import { Link } from '../../Components'
 
@@ -52,7 +53,8 @@ const ForgotPassword = () => {
     )
 
     if (isFulfilled(forgotPasswordResult)) {
-      setTimeout(() => {
+      setTimeout(async () => {
+        await dispatch(ClearAuth.action())
         history.push('/auth/sign-in')
       }, 5000)
     }

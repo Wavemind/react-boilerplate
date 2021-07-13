@@ -15,6 +15,7 @@ import { useSnackbar } from 'notistack'
  * The internal imports
  */
 import NewPasswordAuth from '../../Store/Auth/NewPassword'
+import ClearAuth from '../../Store/Auth/Clear'
 import useStyles from '../../Theme/Pages/Auth/SignIn'
 import { Link } from '../../Components'
 
@@ -64,7 +65,8 @@ const NewPassword = () => {
     )
 
     if (isFulfilled(newPasswordResult)) {
-      setTimeout(() => {
+      setTimeout(async () => {
+        await dispatch(ClearAuth.action())
         history.push('/auth/sign-in')
       }, 5000)
     }
