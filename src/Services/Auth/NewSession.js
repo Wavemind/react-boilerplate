@@ -2,8 +2,9 @@
  * The internal imports
  */
 import api from '../index'
+import AddUser from '../../Store/User/Add'
 
-export default async ({ email, password }) => {
+export default async ({ email, password }, { dispatch }) => {
   const response = await api.post('auth/sign_in', { email, password })
 
   // Store credentials
@@ -12,5 +13,7 @@ export default async ({ email, password }) => {
   localStorage.setItem('expiry', response.headers.expiry)
   localStorage.setItem('uid', response.headers.uid)
 
-  return response.data.data
+  await dispatch(AddUser.action(response.data.data))
+
+  return {}
 }

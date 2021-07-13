@@ -10,11 +10,11 @@ import {
 /**
  * The internal imports
  */
-import { DestroySessionUserService } from '../../Services/User'
+import { DestroySessionAuthService } from '../../Services/Auth'
 
 export default {
   initialState: buildAsyncState('destroySession'),
-  action: buildAsyncActions('user/destroySession', DestroySessionUserService),
+  action: buildAsyncActions('auth/destroySession', DestroySessionAuthService),
   reducers: buildAsyncReducers({
     errorKey: 'destroySession.error',
     loadingKey: 'destroySession.loading',

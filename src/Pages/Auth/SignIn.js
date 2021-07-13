@@ -2,8 +2,7 @@
  * The external imports
  */
 import React, { useEffect } from 'react'
-
-import { Button, Typography, Box } from '@material-ui/core'
+import { Button, Typography, Box, Grid } from '@material-ui/core'
 import { useForm, Controller } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { isFulfilled } from '@reduxjs/toolkit'
@@ -14,13 +13,12 @@ import { useSnackbar } from 'notistack'
 /**
  * The internal imports
  */
-import NewSessionUser from '../../Store/User/NewSession'
+import NewSessionAuth from '../../Store/Auth/NewSession'
 import useStyles from '../../Theme/Pages/Auth/SignIn'
 import { Link, AuthTextInput } from '../../Components'
 
-export default function SignIn() {
+const SignIn = () => {
   const { enqueueSnackbar } = useSnackbar()
-
   const classes = useStyles()
   const { control, handleSubmit } = useForm()
   const dispatch = useDispatch()
@@ -29,21 +27,21 @@ export default function SignIn() {
   const location = useLocation()
 
   // Get values from the store
-  const newSessionError = useSelector(state => state.user.newSession.error)
-  const newSessionLoading = useSelector(state => state.user.newSession.loading)
+  const newSessionError = useSelector(state => state.auth.newSession.error)
+  const newSessionLoading = useSelector(state => state.auth.newSession.loading)
 
   useEffect(() => {
     newSessionError &&
       enqueueSnackbar(newSessionError.message, { variant: 'error' })
   }, [newSessionError])
 
-  const onSubmit = async data => {
-    // Dispatches the user information to open a new session
-    const newSessionUser = await dispatch(
-      NewSessionUser.action({ email: data.email, password: data.password }),
+  // Dispatches the user information to open a new session
+  const onSubmit = async ({ email, password }) => {
+    const newSessionAuth = await dispatch(
+      NewSessionAuth.action({ email, password }),
     )
 
-    if (isFulfilled(newSessionUser)) {
+    if (isFulfilled(newSessionAuth)) {
       let { from } = location.state || { from: { pathname: '/' } }
       history.replace(from)
     }
@@ -68,7 +66,7 @@ export default function SignIn() {
               required
               fullWidth
               id="email"
-              placeholder={t('pages.auth.sign_in.email')}
+              placeholder={t('user.email')}
               name="email"
               autoComplete="email"
               autoFocus
@@ -88,7 +86,7 @@ export default function SignIn() {
               required
               fullWidth
               name="password"
-              placeholder={t('pages.auth.sign_in.password')}
+              placeholder={t('user.password')}
               type="password"
               id="password"
               autoComplete="current-password"
@@ -105,14 +103,19 @@ export default function SignIn() {
           disabled={newSessionLoading}
           className={classes.submit}
         >
-          {t('pages.auth.sign_in.login')}
+          {t('actions.login')}
         </Button>
+
+        <Grid container>
+          <Grid item xs>
+            <Link to="forgot-password" variant="body2">
+              {t('pages.auth.forgot_password_url')}
+            </Link>
+          </Grid>
+        </Grid>
       </form>
-      <Box mt={2} display="flex">
-        <Link to={process.env.PUBLIC_URL + '/'}>
-          {t('pages.auth.sign_in.forgot_password')}
-        </Link>
-      </Box>
     </div>
   )
 }
+
+export default SignIn

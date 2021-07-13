@@ -8,7 +8,7 @@ import * as React from 'react'
  */
 import { Link } from '../../Components'
 
-export default function NotFoundPage() {
+const NotFoundPage = () => {
   return (
     <>
       <header>
@@ -38,3 +38,5 @@ export default function NotFoundPage() {
     </>
   )
 }
+
+export default NotFoundPage

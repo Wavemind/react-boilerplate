@@ -33,7 +33,7 @@ instance.interceptors.request.use(
     const expiry = localStorage.getItem('expiry')
     const uid = localStorage.getItem('uid')
 
-    config.baseURL = Config.URL_DEV_API
+    config.baseURL = Config.URL_STAGING_API
     config.headers.common['access-token'] = accessToken
     config.headers.common.client = client
     config.headers.common.expiry = expiry

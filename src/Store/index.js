@@ -18,10 +18,12 @@ import {
 /**
  * The internal imports
  */
+import auth from './Auth'
 import theme from './Theme'
 import user from './User'
 
 const reducers = combineReducers({
+  auth,
   theme,
   user,
 })

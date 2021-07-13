@@ -21,8 +21,6 @@ const theme = createTheme(Theme('light'))
 function App() {
   const classes = useStyles()
 
-  console.log(classes)
-
   return (
     <BrowserRouter>
       <Provider store={store}>
