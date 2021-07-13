@@ -16,7 +16,6 @@ export default {
   initialState: buildAsyncState('destroySession'),
   action: buildAsyncActions('auth/destroySession', DestroySessionAuthService),
   reducers: buildAsyncReducers({
-    itemKey: null,
     errorKey: 'destroySession.error',
     loadingKey: 'destroySession.loading',
   }),

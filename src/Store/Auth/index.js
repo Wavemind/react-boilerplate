@@ -9,6 +9,7 @@ import { buildSlice } from '@thecodingmachine/redux-toolkit-wrapper'
 import NewSession from './NewSession'
 import DestroySession from './DestroySession'
 import ForgotPassword from './ForgotPassword'
+import NewPassword from './NewPassword'
 
 const sliceInitialState = {
   item: {},
@@ -16,6 +17,6 @@ const sliceInitialState = {
 
 export default buildSlice(
   'auth',
-  [NewSession, DestroySession, ForgotPassword],
+  [NewSession, DestroySession, ForgotPassword, NewPassword],
   sliceInitialState,
 ).reducer

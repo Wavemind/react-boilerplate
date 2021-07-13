@@ -1,8 +1,10 @@
 import api from '../index'
 
 export default async ({ email }) => {
-  const result = await api.post('auth/password', {
+  const response = await api.post('auth/password', {
     email,
+    redirect_url: 'http://localhost:3001/auth/new-password',
   })
-  console.log('le result', result)
+
+  return response.data
 }

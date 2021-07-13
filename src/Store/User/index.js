@@ -9,4 +9,6 @@ import { buildSlice } from '@thecodingmachine/redux-toolkit-wrapper'
 import Add from './Add'
 import Remove from './Remove'
 
-export default buildSlice('user', [Add, Remove]).reducer
+export default buildSlice('user', [Add, Remove], {
+  item: {},
+}).reducer

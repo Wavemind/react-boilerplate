@@ -1,7 +1,7 @@
 export default {
-  side_bar: {
-    title: 'Accès personnel',
-    logout: 'Déconnexion',
+  actions: {
+    send: 'Envoyer',
+    login: 'Connexion',
   },
   navigation: {
     dashboard: 'Dashboard',
@@ -10,17 +10,24 @@ export default {
     auth: {
       forgot_password: {
         title: 'Réinitialisation de mot de passe',
-        send: 'Envoyer',
       },
       sign_in: {
         title: 'Bienvenue',
-        login: 'Connexion',
         forgot_password: 'Mot de passe oublié ?',
       },
+      new_password: {
+        title: 'Changer de mot de passe',
+      },
+      redirection: "Vous allez être redirigé d'ici quelques secondes",
     },
+  },
+  side_bar: {
+    title: 'Accès personnel',
+    logout: 'Déconnexion',
   },
   user: {
     email: 'Email',
     password: 'Mot de passe',
+    password_confirmation: 'Confirmation du mot de passe',
   },
 }

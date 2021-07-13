@@ -35,10 +35,10 @@ export default function SignIn() {
   const newSessionError = useSelector(state => state.auth.newSession.error)
   const newSessionLoading = useSelector(state => state.auth.newSession.loading)
 
-  const onSubmit = async data => {
+  const onSubmit = async ({ email, password }) => {
     // Dispatches the user information to open a new session
     const newSessionAuth = await dispatch(
-      NewSessionAuth.action({ email: data.email, password: data.password }),
+      NewSessionAuth.action({ email, password }),
     )
 
     if (isFulfilled(newSessionAuth)) {
@@ -119,7 +119,7 @@ export default function SignIn() {
           disabled={newSessionLoading}
           className={classes.submit}
         >
-          {t('pages.auth.sign_in.login')}
+          {t('actions.login')}
         </Button>
 
         <Grid container>

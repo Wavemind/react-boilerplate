@@ -6,23 +6,22 @@ import React from 'react'
 import { Button, TextField, Typography, Box } from '@material-ui/core'
 import { useForm, Controller } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
-import { isFulfilled } from '@reduxjs/toolkit'
-import { useHistory, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { isFulfilled } from '@reduxjs/toolkit'
+import { useHistory } from 'react-router-dom'
 
 /**
  * The internal imports
  */
-import ForgotPasswordAuth from '../../../Store/Auth/ForgotPassword'
-import useStyles from '../../../Theme/Pages/Auth/SignIn'
+import ForgotPasswordAuth from '../../Store/Auth/ForgotPassword'
+import useStyles from '../../Theme/Pages/Auth/SignIn'
 
 export default function ForgotPassword() {
   const classes = useStyles()
-  const { control, handleSubmit } = useForm()
+  const history = useHistory()
   const dispatch = useDispatch()
   const { t } = useTranslation()
-  const history = useHistory()
-  const location = useLocation()
+  const { control, handleSubmit } = useForm()
 
   // Get values from the store
   const forgotPasswordError = useSelector(
@@ -32,14 +31,17 @@ export default function ForgotPassword() {
     state => state.auth.forgotPassword.loading,
   )
 
-  const onSubmit = async data => {
-    const forgotPasswordUser = await dispatch(
-      ForgotPasswordAuth.action({ email: data.email }),
+  const forgotPassword = useSelector(state => state.auth.item)
+
+  const onSubmit = async ({ email }) => {
+    const forgotPasswordResult = await dispatch(
+      ForgotPasswordAuth.action({ email }),
     )
 
-    if (isFulfilled(forgotPasswordUser)) {
-      let { from } = location.state || { from: { pathname: '/' } }
-      history.replace(from)
+    if (isFulfilled(forgotPasswordResult)) {
+      setTimeout(() => {
+        history.push('/auth/sign-in')
+      }, 5000)
     }
   }
 
@@ -75,6 +77,17 @@ export default function ForgotPassword() {
           )}
         />
 
+        {forgotPassword.message && (
+          <Typography component="div" variant="body1">
+            <Box mt={2} display="flex" justifyContent="center">
+              {forgotPassword.message}
+            </Box>
+            <Box mt={2} display="flex" justifyContent="center">
+              {t('pages.auth.redirection')}
+            </Box>
+          </Typography>
+        )}
+
         {forgotPasswordError && (
           <Typography component="div" variant="body1">
             <Box
@@ -87,6 +100,7 @@ export default function ForgotPassword() {
             </Box>
           </Typography>
         )}
+
         <Button
           type="submit"
           fullWidth
@@ -95,7 +109,7 @@ export default function ForgotPassword() {
           disabled={forgotPasswordLoading}
           className={classes.submit}
         >
-          {t('pages.auth.forgot_password.send')}
+          {t('actions.send')}
         </Button>
       </form>
     </div>
