@@ -6,15 +6,7 @@ import { buildSlice } from '@thecodingmachine/redux-toolkit-wrapper'
 /**
  * The internal imports
  */
-import NewSession from './NewSession'
-import DestroySession from './DestroySession'
+import Add from './Add'
+import Remove from './Remove'
 
-const sliceInitialState = {
-  item: {},
-}
-
-export default buildSlice(
-  'user',
-  [NewSession, DestroySession],
-  sliceInitialState,
-).reducer
+export default buildSlice('user', [Add, Remove]).reducer

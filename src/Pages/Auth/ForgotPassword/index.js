@@ -3,14 +3,7 @@
  */
 import React from 'react'
 
-import {
-  Button,
-  TextField,
-  Typography,
-  Box,
-  Grid,
-  Link,
-} from '@material-ui/core'
+import { Button, TextField, Typography, Box } from '@material-ui/core'
 import { useForm, Controller } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { isFulfilled } from '@reduxjs/toolkit'
@@ -20,10 +13,10 @@ import { useTranslation } from 'react-i18next'
 /**
  * The internal imports
  */
-import NewSessionAuth from '../../Store/Auth/NewSession'
-import useStyles from '../../Theme/Pages/Auth/SignIn'
+import ForgotPasswordAuth from '../../../Store/Auth/ForgotPassword'
+import useStyles from '../../../Theme/Pages/Auth/SignIn'
 
-export default function SignIn() {
+export default function ForgotPassword() {
   const classes = useStyles()
   const { control, handleSubmit } = useForm()
   const dispatch = useDispatch()
@@ -32,16 +25,19 @@ export default function SignIn() {
   const location = useLocation()
 
   // Get values from the store
-  const newSessionError = useSelector(state => state.auth.newSession.error)
-  const newSessionLoading = useSelector(state => state.auth.newSession.loading)
+  const forgotPasswordError = useSelector(
+    state => state.auth.forgotPassword.error,
+  )
+  const forgotPasswordLoading = useSelector(
+    state => state.auth.forgotPassword.loading,
+  )
 
   const onSubmit = async data => {
-    // Dispatches the user information to open a new session
-    const newSessionAuth = await dispatch(
-      NewSessionAuth.action({ email: data.email, password: data.password }),
+    const forgotPasswordUser = await dispatch(
+      ForgotPasswordAuth.action({ email: data.email }),
     )
 
-    if (isFulfilled(newSessionAuth)) {
+    if (isFulfilled(forgotPasswordUser)) {
       let { from } = location.state || { from: { pathname: '/' } }
       history.replace(from)
     }
@@ -54,7 +50,7 @@ export default function SignIn() {
         src={process.env.PUBLIC_URL + '/logo/logo-black-sentence.svg'}
       />
       <Typography component="h1" variant="h5">
-        {t('pages.auth.sign_in.title')}
+        {t('pages.auth.forgot_password.title')}
       </Typography>
       <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
         <Controller
@@ -79,27 +75,7 @@ export default function SignIn() {
           )}
         />
 
-        <Controller
-          name="password"
-          control={control}
-          defaultValue={process.env.NODE_ENV === 'development' && '123456'}
-          render={({ field }) => (
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label={t('user.password')}
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              {...field}
-            />
-          )}
-        />
-
-        {newSessionError && (
+        {forgotPasswordError && (
           <Typography component="div" variant="body1">
             <Box
               mt={2}
@@ -107,7 +83,7 @@ export default function SignIn() {
               justifyContent="center"
               color="error.main"
             >
-              {newSessionError.message}
+              {forgotPasswordError.message}
             </Box>
           </Typography>
         )}
@@ -116,19 +92,11 @@ export default function SignIn() {
           fullWidth
           variant="contained"
           color="primary"
-          disabled={newSessionLoading}
+          disabled={forgotPasswordLoading}
           className={classes.submit}
         >
-          {t('pages.auth.sign_in.login')}
+          {t('pages.auth.forgot_password.send')}
         </Button>
-
-        <Grid container>
-          <Grid item xs>
-            <Link href="forgot-password" variant="body2">
-              {t('pages.auth.sign_in.forgot_password')}
-            </Link>
-          </Grid>
-        </Grid>
       </form>
     </div>
   )

@@ -10,12 +10,13 @@ import {
 /**
  * The internal imports
  */
-import { NewSessionUserService } from '../../Services/User'
+import { NewSessionAuthService } from '../../Services/Auth'
 
 export default {
   initialState: buildAsyncState('newSession'),
-  action: buildAsyncActions('user/newSession', NewSessionUserService),
+  action: buildAsyncActions('auth/newSession', NewSessionAuthService),
   reducers: buildAsyncReducers({
+    itemKey: null,
     errorKey: 'newSession.error',
     loadingKey: 'newSession.loading',
   }),

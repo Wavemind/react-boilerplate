@@ -8,13 +8,19 @@ export default {
   },
   pages: {
     auth: {
+      forgot_password: {
+        title: 'Réinitialisation de mot de passe',
+        send: 'Envoyer',
+      },
       sign_in: {
         title: 'Bienvenue',
-        email: 'Email',
-        password: 'Mot de passe',
         login: 'Connexion',
         forgot_password: 'Mot de passe oublié ?',
       },
     },
+  },
+  user: {
+    email: 'Email',
+    password: 'Mot de passe',
   },
 }

@@ -9,6 +9,7 @@ import { Switch, Route } from 'react-router-dom'
  */
 import HomePage from '../Pages'
 import SignInPage from '../Pages/Auth/SignIn'
+import ForgotPassword from '../Pages/Auth/ForgotPassword'
 import NotFoundPage from '../Pages/NotFoundPage'
 import { withAdminLayout, withAuthLayout } from '../Layouts/index'
 
@@ -20,6 +21,11 @@ function Navigation() {
         exact
         path="/auth/sign-in"
         component={withAuthLayout(SignInPage)}
+      />
+      <Route
+        exact
+        path="/auth/forgot-password"
+        component={withAuthLayout(ForgotPassword)}
       />
       <Route component={NotFoundPage} />
     </Switch>

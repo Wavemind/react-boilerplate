@@ -26,7 +26,7 @@ import {
 /**
  * The internal imports
  */
-import DestroySessionUser from '../Store/User/DestroySession'
+import DestroySessionAuth from '../Store/Auth/DestroySession'
 
 const Sidebar = () => {
   const { t } = useTranslation()
@@ -34,7 +34,7 @@ const Sidebar = () => {
   const history = useHistory()
 
   const logout = () => {
-    dispatch(DestroySessionUser.action({}))
+    dispatch(DestroySessionAuth.action({}))
   }
 
   return (
