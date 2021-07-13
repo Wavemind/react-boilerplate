@@ -42,11 +42,7 @@ export default function SignIn() {
 
   return (
     <div>
-      <img
-        className={classes.logo}
-        src={process.env.PUBLIC_URL + '/logo/logo-black-sentence.svg'}
-      />
-      <Typography component="h1" variant="h5">
+      <Typography component="h1" variant="h5" align="center">
         {t('pages.auth.sign_in.title')}
       </Typography>
       <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
@@ -58,7 +54,7 @@ export default function SignIn() {
           }
           render={({ field }) => (
             <TextField
-              variant="outlined"
+              variant="filled"
               margin="normal"
               required
               fullWidth
@@ -78,7 +74,7 @@ export default function SignIn() {
           defaultValue={process.env.NODE_ENV === 'development' && '123456'}
           render={({ field }) => (
             <TextField
-              variant="outlined"
+              variant="filled"
               margin="normal"
               required
               fullWidth
@@ -107,8 +103,8 @@ export default function SignIn() {
         <Button
           type="submit"
           fullWidth
-          variant="contained"
-          color="primary"
+          variant="outlined"
+          size="large"
           disabled={newSessionLoading}
           className={classes.submit}
         >

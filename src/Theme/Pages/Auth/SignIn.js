@@ -10,12 +10,11 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     alignItems: 'center',
   },
-  logo: {
-    marginBottom: theme.spacing(12),
-  },
   form: {
-    width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
+    display: 'flex',
+    flexDirection: 'column',
+    minWidth: '25vw',
   },
   submit: {
     margin: theme.spacing(3, 0, 2),

@@ -2,10 +2,14 @@
  * The external imports
  */
 import { createTheme } from '@material-ui/core/styles'
+import CommonPalette from './Common'
+import Common from './Common'
 
 const theme = createTheme({
+  ...Common,
   palette: {
     type: 'dark',
+    ...CommonPalette,
     primary: {
       light: '#eec664',
       main: '#eab83e',
