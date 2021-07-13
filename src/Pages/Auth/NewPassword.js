@@ -16,7 +16,7 @@ import { isFulfilled } from '@reduxjs/toolkit'
 import NewPasswordAuth from '../../Store/Auth/NewPassword'
 import useStyles from '../../Theme/Pages/Auth/SignIn'
 
-export default function NewPassword() {
+const NewPassword = () => {
   const classes = useStyles()
   const history = useHistory()
   const { t } = useTranslation()
@@ -137,3 +137,5 @@ export default function NewPassword() {
     </div>
   )
 }
+
+export default NewPassword

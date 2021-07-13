@@ -23,7 +23,7 @@ import { useTranslation } from 'react-i18next'
 import NewSessionAuth from '../../Store/Auth/NewSession'
 import useStyles from '../../Theme/Pages/Auth/SignIn'
 
-export default function SignIn() {
+const SignIn = () => {
   const classes = useStyles()
   const { control, handleSubmit } = useForm()
   const dispatch = useDispatch()
@@ -133,3 +133,5 @@ export default function SignIn() {
     </div>
   )
 }
+
+export default SignIn

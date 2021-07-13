@@ -16,7 +16,7 @@ import { useHistory } from 'react-router-dom'
 import ForgotPasswordAuth from '../../Store/Auth/ForgotPassword'
 import useStyles from '../../Theme/Pages/Auth/SignIn'
 
-export default function ForgotPassword() {
+const ForgotPassword = () => {
   const classes = useStyles()
   const history = useHistory()
   const dispatch = useDispatch()
@@ -115,3 +115,5 @@ export default function ForgotPassword() {
     </div>
   )
 }
+
+export default ForgotPassword
