@@ -1,22 +1,25 @@
 /**
  * The external imports
  */
-import React from 'react'
+import React, { useEffect } from 'react'
 
-import { Button, TextField, Typography, Box } from '@material-ui/core'
+import { Button, TextField, Typography, Grid, Box } from '@material-ui/core'
 import { useForm, Controller } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { isFulfilled } from '@reduxjs/toolkit'
 import { useHistory } from 'react-router-dom'
+import { useSnackbar } from 'notistack'
 
 /**
  * The internal imports
  */
 import ForgotPasswordAuth from '../../Store/Auth/ForgotPassword'
 import useStyles from '../../Theme/Pages/Auth/SignIn'
+import { Link } from '../../Components'
 
 const ForgotPassword = () => {
+  const { enqueueSnackbar } = useSnackbar()
   const classes = useStyles()
   const history = useHistory()
   const dispatch = useDispatch()
@@ -33,6 +36,16 @@ const ForgotPassword = () => {
 
   const forgotPassword = useSelector(state => state.auth.item)
 
+  useEffect(() => {
+    forgotPasswordError &&
+      enqueueSnackbar(forgotPasswordError.message, { variant: 'error' })
+  }, [forgotPasswordError])
+
+  useEffect(() => {
+    forgotPassword.message &&
+      enqueueSnackbar(forgotPassword.message, { variant: 'success' })
+  }, [forgotPassword])
+
   const onSubmit = async ({ email }) => {
     const forgotPasswordResult = await dispatch(
       ForgotPasswordAuth.action({ email }),
@@ -47,11 +60,7 @@ const ForgotPassword = () => {
 
   return (
     <div>
-      <img
-        className={classes.logo}
-        src={process.env.PUBLIC_URL + '/logo/logo-black-sentence.svg'}
-      />
-      <Typography component="h1" variant="h5">
+      <Typography component="h1" variant="h5" align="center">
         {t('pages.auth.forgot_password.title')}
       </Typography>
       <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
@@ -63,7 +72,7 @@ const ForgotPassword = () => {
           }
           render={({ field }) => (
             <TextField
-              variant="outlined"
+              variant="filled"
               margin="normal"
               required
               fullWidth
@@ -80,23 +89,7 @@ const ForgotPassword = () => {
         {forgotPassword.message && (
           <Typography component="div" variant="body1">
             <Box mt={2} display="flex" justifyContent="center">
-              {forgotPassword.message}
-            </Box>
-            <Box mt={2} display="flex" justifyContent="center">
               {t('pages.auth.redirection')}
-            </Box>
-          </Typography>
-        )}
-
-        {forgotPasswordError && (
-          <Typography component="div" variant="body1">
-            <Box
-              mt={2}
-              display="flex"
-              justifyContent="center"
-              color="error.main"
-            >
-              {forgotPasswordError.message}
             </Box>
           </Typography>
         )}
@@ -104,13 +97,21 @@ const ForgotPassword = () => {
         <Button
           type="submit"
           fullWidth
-          variant="contained"
-          color="primary"
+          variant="outlined"
+          size="large"
           disabled={forgotPasswordLoading}
           className={classes.submit}
         >
           {t('actions.send')}
         </Button>
+
+        <Grid container>
+          <Grid item xs>
+            <Link to="sign-in" variant="body2">
+              {t('pages.auth.sign_in_url')}
+            </Link>
+          </Grid>
+        </Grid>
       </form>
     </div>
   )

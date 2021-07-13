@@ -1,22 +1,25 @@
 /**
  * The external imports
  */
-import React from 'react'
+import React, { useEffect } from 'react'
 
-import { Button, TextField, Typography, Box } from '@material-ui/core'
+import { Button, TextField, Typography, Box, Grid } from '@material-ui/core'
 import { useForm, Controller } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useHistory } from 'react-router-dom'
 import { isFulfilled } from '@reduxjs/toolkit'
+import { useSnackbar } from 'notistack'
 
 /**
  * The internal imports
  */
 import NewPasswordAuth from '../../Store/Auth/NewPassword'
 import useStyles from '../../Theme/Pages/Auth/SignIn'
+import { Link } from '../../Components'
 
 const NewPassword = () => {
+  const { enqueueSnackbar } = useSnackbar()
   const classes = useStyles()
   const history = useHistory()
   const { t } = useTranslation()
@@ -30,6 +33,23 @@ const NewPassword = () => {
   const newPasswordLoading = useSelector(
     state => state.auth.newPassword.loading,
   )
+
+  useEffect(() => {
+    if (newPasswordError?.message) {
+      if (newPasswordError.message.full_messages) {
+        enqueueSnackbar(newPasswordError.message.full_messages[0], {
+          variant: 'error',
+        })
+      } else {
+        enqueueSnackbar(newPasswordError.message, { variant: 'error' })
+      }
+    }
+  }, [newPasswordError])
+
+  useEffect(() => {
+    newPassword.message &&
+      enqueueSnackbar(newPassword.message, { variant: 'success' })
+  }, [newPassword])
 
   const onSubmit = async ({ password, passwordConfirmation }) => {
     const newPasswordResult = await dispatch(
@@ -52,11 +72,7 @@ const NewPassword = () => {
 
   return (
     <div>
-      <img
-        className={classes.logo}
-        src={process.env.PUBLIC_URL + '/logo/logo-black-sentence.svg'}
-      />
-      <Typography component="h1" variant="h5">
+      <Typography component="h1" variant="h5" align="center">
         {t('pages.auth.new_password.title')}
       </Typography>
       <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
@@ -66,7 +82,7 @@ const NewPassword = () => {
           defaultValue={process.env.NODE_ENV === 'development' && '123456'}
           render={({ field }) => (
             <TextField
-              variant="outlined"
+              variant="filled"
               margin="normal"
               required
               fullWidth
@@ -86,7 +102,7 @@ const NewPassword = () => {
           defaultValue={process.env.NODE_ENV === 'development' && '123456'}
           render={({ field }) => (
             <TextField
-              variant="outlined"
+              variant="filled"
               margin="normal"
               required
               fullWidth
@@ -102,23 +118,7 @@ const NewPassword = () => {
         {newPassword.message && (
           <Typography component="div" variant="body1">
             <Box mt={2} display="flex" justifyContent="center">
-              {newPassword.message}
-            </Box>
-            <Box mt={2} display="flex" justifyContent="center">
               {t('pages.auth.redirection')}
-            </Box>
-          </Typography>
-        )}
-
-        {newPasswordError && (
-          <Typography component="div" variant="body1">
-            <Box
-              mt={2}
-              display="flex"
-              justifyContent="center"
-              color="error.main"
-            >
-              {newPasswordError.message}
             </Box>
           </Typography>
         )}
@@ -126,13 +126,21 @@ const NewPassword = () => {
         <Button
           type="submit"
           fullWidth
-          variant="contained"
-          color="primary"
+          variant="outlined"
+          size="large"
           disabled={newPasswordLoading}
           className={classes.submit}
         >
           {t('actions.send')}
         </Button>
+
+        <Grid container>
+          <Grid item xs>
+            <Link to="sign-in" variant="body2">
+              {t('pages.auth.sign_in_url')}
+            </Link>
+          </Grid>
+        </Grid>
       </form>
     </div>
   )

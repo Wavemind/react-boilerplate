@@ -2,8 +2,7 @@
  * The external imports
  */
 import React, { useEffect } from 'react'
-
-import { Button, TextField, Typography, Box, Grid } from '@material-ui/core'
+import { Button, TextField, Typography, Grid } from '@material-ui/core'
 import { useForm, Controller } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { isFulfilled } from '@reduxjs/toolkit'
@@ -110,7 +109,7 @@ const SignIn = () => {
         <Grid container>
           <Grid item xs>
             <Link to="forgot-password" variant="body2">
-              {t('pages.auth.sign_in.forgot_password')}
+              {t('pages.auth.forgot_password_url')}
             </Link>
           </Grid>
         </Grid>

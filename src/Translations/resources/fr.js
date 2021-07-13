@@ -13,12 +13,13 @@ export default {
       },
       sign_in: {
         title: 'Bienvenue',
-        forgot_password: 'Mot de passe oublié ?',
       },
       new_password: {
         title: 'Changer de mot de passe',
       },
       redirection: "Vous allez être redirigé d'ici quelques secondes",
+      sign_in_url: 'Connexion',
+      forgot_password_url: 'Mot de passe oublié ?',
     },
   },
   side_bar: {
