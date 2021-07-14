@@ -2,76 +2,87 @@
  * The external imports
  */
 import React from 'react'
+import { useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import {
   ListItem,
   ListItemIcon,
   ListItemText,
   ListSubheader,
+  List,
+  Divider,
 } from '@material-ui/core'
 import {
   Dashboard,
   People,
   BarChart,
   Layers,
-  Assignment,
+  ExitToApp,
   ShoppingCart,
 } from '@material-ui/icons'
 
-export const mainListItems = (
-  <div>
-    <ListItem button>
-      <ListItemIcon>
-        <Dashboard />
-      </ListItemIcon>
-      <ListItemText primary="Dashboard" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <ShoppingCart />
-      </ListItemIcon>
-      <ListItemText primary="Orders" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <People />
-      </ListItemIcon>
-      <ListItemText primary="Customers" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <BarChart />
-      </ListItemIcon>
-      <ListItemText primary="Reports" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <Layers />
-      </ListItemIcon>
-      <ListItemText primary="Integrations" />
-    </ListItem>
-  </div>
-)
+/**
+ * The internal imports
+ */
+import DestroySessionAuth from '../Store/Auth/DestroySession'
 
-export const secondaryListItems = (
-  <div>
-    <ListSubheader inset>Saved reports</ListSubheader>
-    <ListItem button>
-      <ListItemIcon>
-        <Assignment />
-      </ListItemIcon>
-      <ListItemText primary="Current month" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <Assignment />
-      </ListItemIcon>
-      <ListItemText primary="Last quarter" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <Assignment />
-      </ListItemIcon>
-      <ListItemText primary="Year-end sale" />
-    </ListItem>
-  </div>
-)
+const Sidebar = () => {
+  const { t } = useTranslation()
+  const dispatch = useDispatch()
+  const history = useHistory()
+
+  const logout = () => {
+    dispatch(DestroySessionAuth.action({}))
+  }
+
+  return (
+    <div>
+      <Divider />
+      <List>
+        <ListItem button onClick={() => history.push('/')}>
+          <ListItemIcon>
+            <Dashboard />
+          </ListItemIcon>
+          <ListItemText primary="Dashboard" />
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <ShoppingCart />
+          </ListItemIcon>
+          <ListItemText primary="Orders" />
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <People />
+          </ListItemIcon>
+          <ListItemText primary="Customers" />
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <BarChart />
+          </ListItemIcon>
+          <ListItemText primary="Reports" />
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <Layers />
+          </ListItemIcon>
+          <ListItemText primary="Integrations" />
+        </ListItem>
+      </List>
+      <Divider />
+      <List>
+        <ListSubheader inset>{t('side_bar.title')}</ListSubheader>
+        <ListItem button onClick={logout}>
+          <ListItemIcon>
+            <ExitToApp />
+          </ListItemIcon>
+          <ListItemText primary={t('side_bar.logout')} />
+        </ListItem>
+      </List>
+    </div>
+  )
+}
+
+export default Sidebar

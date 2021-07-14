@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next'
 import { Link } from '../../Components/index'
 import useStyles from '../../Theme/Pages/NotFoundPage/index.style'
 
-export default function NotFoundPage() {
+const NotFoundPage = () => {
   const classes = useStyles()
   const { t } = useTranslation()
 
@@ -36,3 +36,5 @@ export default function NotFoundPage() {
     </>
   )
 }
+
+export default NotFoundPage

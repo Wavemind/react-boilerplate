@@ -1,19 +1,15 @@
 /**
  * The external imports
  */
-import styled from 'styled-components'
+import React from 'react'
+import { Link as MaterialLink } from '@material-ui/core'
 import { Link as RouterLink } from 'react-router-dom'
 
-export default styled(RouterLink)`
-  color: ${p => p.theme.primary};
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-    opacity: 0.8;
-  }
-
-  &:active {
-    opacity: 0.4;
-  }
-`
+function Link(props) {
+  return (
+    <MaterialLink component={RouterLink} color="textPrimary" {...props}>
+      {props.children}
+    </MaterialLink>
+  )
+}
+export default Link

@@ -28,7 +28,16 @@ export const handleError = ({ message, data, status }) =>
 
 instance.interceptors.request.use(
   async config => {
+    const accessToken = localStorage.getItem('access_token')
+    const client = localStorage.getItem('client')
+    const expiry = localStorage.getItem('expiry')
+    const uid = localStorage.getItem('uid')
+
     config.baseURL = Config.URL_STAGING_API
+    config.headers.common['access-token'] = accessToken
+    config.headers.common.client = client
+    config.headers.common.expiry = expiry
+    config.headers.common.uid = uid
     return config
   },
   error => {
