@@ -28,9 +28,9 @@ const NotFoundPage = () => {
           </span>
           4
         </div>
-        <p className={classes.subtitle}>{t('notFoundPage.notFound')}</p>
+        <p className={classes.subtitle}>{t('pages.not_found.title')}</p>
         <Link to={process.env.PUBLIC_URL + '/'} className={classes.subtitle}>
-          {t('notFoundPage.return')}
+          {t('pages.not_found.return')}
         </Link>
       </div>
     </>
