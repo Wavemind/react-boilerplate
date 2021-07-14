@@ -1,5 +1,5 @@
 /**
- * The internal imports
+ * The external imports
  */
 import React from 'react'
 import { withRouter } from 'next/router'
@@ -7,7 +7,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import Container from '@material-ui/core/Container'
 
 /**
- * The external imports
+ * The internal imports
  */
 import useStyles from '../Theme/Layouts/Auth'
 import { Copyright } from '../Components'

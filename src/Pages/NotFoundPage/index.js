@@ -2,38 +2,36 @@
  * The external imports
  */
 import * as React from 'react'
+import { useTranslation } from 'react-i18next'
 
 /**
  * The internal imports
  */
-import { Link } from '../../Components'
+import { Link } from '../../Components/index'
+import useStyles from '../../Theme/Pages/NotFoundPage/index.style'
 
 const NotFoundPage = () => {
+  const classes = useStyles()
+  const { t } = useTranslation()
+
   return (
     <>
       <header>
         <title>404 Page Not Found</title>
         <meta name="description" content="Page not found" />
       </header>
-      <div
-        style={{
-          height: 200,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexDirection: 'column',
-          minHeight: 320,
-        }}
-      >
-        <div>
+      <div className={classes.wrapper}>
+        <div className={classes.title}>
           4
           <span role="img" aria-label="Crying Face">
             😢
           </span>
           4
         </div>
-        <p>Page not found.</p>
-        <Link to={process.env.PUBLIC_URL + '/'}>Return to Home Page</Link>
+        <p className={classes.subtitle}>{t('pages.not_found.title')}</p>
+        <Link to={process.env.PUBLIC_URL + '/'} className={classes.subtitle}>
+          {t('pages.not_found.return')}
+        </Link>
       </div>
     </>
   )

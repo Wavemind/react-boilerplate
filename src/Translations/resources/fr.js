@@ -7,6 +7,10 @@ export default {
     dashboard: 'Dashboard',
   },
   pages: {
+    not_found: {
+      title: 'Page introuvable',
+      return: 'Retour a Home',
+    },
     auth: {
       forgot_password: {
         title: 'Réinitialisation de mot de passe',
