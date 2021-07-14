@@ -2,6 +2,7 @@
  * The external imports
  */
 import * as React from 'react'
+import { useTranslation } from 'react-i18next'
 
 /**
  * The internal imports
@@ -11,6 +12,7 @@ import useStyles from '../../Theme/Pages/NotFoundPage/index.style'
 
 export default function NotFoundPage() {
   const classes = useStyles()
+  const { t } = useTranslation()
 
   return (
     <>
@@ -26,9 +28,9 @@ export default function NotFoundPage() {
           </span>
           4
         </div>
-        <p className={classes.subtitle}>Page not found.</p>
+        <p className={classes.subtitle}>{t('notFoundPage.notFound')}</p>
         <Link to={process.env.PUBLIC_URL + '/'} className={classes.subtitle}>
-          Return to Home Page
+          {t('notFoundPage.return')}
         </Link>
       </div>
     </>
